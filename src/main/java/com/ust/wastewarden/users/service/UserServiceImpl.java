@@ -12,5 +12,6 @@ public interface UserServiceImpl {
     public User createUser(UserDto user);
     public void deleteUser(Long id);
     public User updateUser(Long id, UserDto updatedUser);
+    public Optional<User> getUserByEmail(String email);
 
 }

@@ -2,6 +2,7 @@ package com.ust.wastewarden.users.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 
 import java.util.Date;
 
@@ -25,7 +26,19 @@ public class User {
     private String email;
     private String location;
 
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    private List<Notifications> notifications;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
+
+    public void addNotification(Notifications notification) {
+        notifications.add(notification);
+//        notification.setUser(this);
+    }
+
 }
+
+
+

@@ -35,6 +35,15 @@ public class UserService implements UserServiceImpl {
     }
 
     @Override
+    public Optional<User> getUserByEmail(String email) {
+
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if(optionalUser.isPresent()) { return optionalUser; }
+
+        throw new UserNotFoundException("User not found");
+    }
+
+    @Override
     public User createUser(UserDto userDto) {
         User user = userMapper.touser(userDto);
         System.out.println(user);
